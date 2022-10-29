@@ -18,6 +18,8 @@ class Setting extends Model
         'midtrans_merchant_id',
         'midtrans_snap_prod',
         'midtrans_snap_dev',
+        'site_name',
+        'ticket_price',
         'is_production',
         'is_open_order',
     ];
