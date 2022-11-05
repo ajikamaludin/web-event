@@ -15,6 +15,15 @@
             <span class="font-bold text-lg">{{$order->order_status_text}}</span>
         </div>
         @endif
+        @if($order->order_status == App\Models\Order::STATUS_PAID)
+            <div class="mt-10 w-full flex flex-col items-center">
+                <div>{!! DNS1D::getBarcodeHTML($order->order_id, 'CODABAR') !!}</div>
+                <div class="text-sm">{{ $order->order_id }}</div>
+            </div>
+            <div class="text-sm text-center pt-10">
+                silahkan screenshot tampilan layar anda untuk ditukarkan dengan tiket fisik secara OTS
+            </div>
+        @endif
         @if($order->order_status == App\Models\Order::STATUS_NOT_PAID)
         <div class="w-full flex justify-center mt-4">
             <div class="btn" id="btn-pay">Bayar</div>

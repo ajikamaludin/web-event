@@ -18,7 +18,7 @@ class SiteController extends Controller
     public function order()
     {
         $setting = Setting::first();
-        $orderNumber = time() + rand(1000000000, 9999999999);
+        $orderNumber = time() + rand(1000, 9999);
         $date = now()->format('dmy');
 
         $amount = number_format($setting->ticket_price, 0, ',', '.');
