@@ -44,6 +44,6 @@ class Order extends Model
             self::STATUS_PENDING => 'Pending',
             self::STATUS_PAID => 'Terbayar',
             self::STATUS_FAIL => 'Pembayaran Gagal',
-        ][$this->order_status];
+        ][$this->order_status] ." | ". ($this->is_checked == 1 ? 'Sudah Scan' : 'Belum Scan');
     }
 }

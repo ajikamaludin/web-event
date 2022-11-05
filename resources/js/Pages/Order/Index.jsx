@@ -11,6 +11,7 @@ import { IconMenu } from '@/Icons'
 import { formatDate } from '@/utils'
 import { useModalState } from '@/Hooks'
 import ModalConfirm from '@/Components/ModalConfirm'
+import ModalScan from './ModalScan'
 
 export default function Index(props) {
     const { data: orders, links } = props.orders
@@ -32,6 +33,8 @@ export default function Index(props) {
             })
         }
     }
+
+    const scanModal = useModalState(false)
 
     const handleFilter = (filter) => {
         setSearch(filter)
@@ -104,7 +107,7 @@ export default function Index(props) {
                                 </div>
                             </div>
                             <div className='flex space-x-1'>
-                                <div className='btn btn-outline'>Scan</div>
+                                <div className='btn btn-outline' onClick={scanModal.toggle}>Scan</div>
                                 <a href={`${route('orders.export')}?${qs.stringify(search)}`} className='btn btn-outline'>Export</a>
                             </div>
                         </div>
@@ -156,6 +159,10 @@ export default function Index(props) {
                 isOpen={confirmModal.isOpen}
                 toggle={confirmModal.toggle}
                 onConfirm={onDelete}
+            />
+            <ModalScan
+                isOpen={scanModal.isOpen}
+                toggle={scanModal.toggle}
             />
         </AuthenticatedLayout>
     )

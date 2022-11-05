@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -62,5 +63,23 @@ class OrderController extends Controller
         }
 
         return (new FastExcel($query->get()))->download("orders-ticket-".now()->format('d-m-Y').".xlsx");
+    }
+
+    public function check(Request $request)
+    {
+        $orderId =  Str::replace('A', '', $request->order_id);
+        $order = Order::where('order_id', $orderId)->first();
+
+        if ($order == null) {
+            return response()->json(["message" => "order not found"], 404);
+        }
+
+        if ($order->is_checked == 1) {
+            return response()->json(["message" => "tiket sudah ditukarkan"], 422);
+        }
+
+        $order->update(['is_checked' => 1]);
+
+        return response()->json(["message"=>"Ok!"]);
     }
 }
