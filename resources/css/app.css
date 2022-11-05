@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@media (min-width: 1280px) {
+    .xl\:h-200 {
+        height: 40rem;
+    }
+}
+
+.text-shadow {
+    text-shadow: 0 0 3px #000000;
+}

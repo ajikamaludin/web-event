@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', function (Request $request) {
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
