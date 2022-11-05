@@ -92,7 +92,7 @@ class SiteController extends Controller
                 'order_status' => Order::STATUS_PAID,
                 'midtrans_detail_callback' => json_encode($request->all())
             ]);
-        } else if($request->transaction_status == 'pending' ) {
+        } elseif ($request->transaction_status == 'pending') {
             $order->update([
                 'order_payment' => $request->transaction_time,
                 'order_payment_channel' => 'Midtrans|'.$request->payment_type,
@@ -120,21 +120,21 @@ class SiteController extends Controller
 
         if ($request->transaction_status == 'settlement' || $request->transaction_status == 'capture') {
             $order->update([
-                'order_payment' => $request->transaction_time,
+                'order_payment' => now(),
                 'order_payment_channel' => 'Midtrans|'.$request->payment_type,
                 'order_status' => Order::STATUS_PAID,
                 'midtrans_detail_callback' => json_encode($request->all())
             ]);
-        } else if($request->transaction_status == 'pending' ) {
+        } elseif ($request->transaction_status == 'pending') {
             $order->update([
-                'order_payment' => $request->transaction_time,
+                'order_payment' => now(),
                 'order_payment_channel' => 'Midtrans|'.$request->payment_type,
                 'order_status' => Order::STATUS_PENDING,
                 'midtrans_detail_callback' => json_encode($request->all())
             ]);
         } else {
             $order->update([
-                'order_payment' => $request->transaction_time,
+                'order_payment' => now(),
                 'order_payment_channel' => 'Midtrans|FAIL',
                 'order_status' => Order::STATUS_FAIL,
                 'midtrans_detail_callback' => json_encode($request->all())

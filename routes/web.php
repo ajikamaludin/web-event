@@ -25,7 +25,7 @@ Route::get('/', [SiteController::class, 'home'])->name('home');
 Route::get('/order', [SiteController::class, 'order'])->name('order');
 Route::post('/pay', [SiteController::class, 'pay'])->name('order.pay');
 Route::get('/pay/{order:order_id}', [SiteController::class, 'show'])->name('order.show');
-Route::get('/pay/midtrans/finish',[SiteController::class, 'finish'])->name('midtrans.finish');
+Route::get('/pay/midtrans/finish', [SiteController::class, 'finish'])->name('midtrans.finish');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
     
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/export', [OrderController::class, 'export'])->name('orders.export');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 

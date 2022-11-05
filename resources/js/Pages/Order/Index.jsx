@@ -3,6 +3,7 @@ import { usePrevious } from 'react-use'
 import { Head, Link } from '@inertiajs/inertia-react'
 import { Inertia } from '@inertiajs/inertia'
 import { toast } from 'react-toastify'
+import qs from 'qs'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import Pagination from '@/Components/Pagination'
@@ -104,7 +105,7 @@ export default function Index(props) {
                             </div>
                             <div className='flex space-x-1'>
                                 <div className='btn btn-outline'>Scan</div>
-                                <div className='btn btn-outline'>Export</div>
+                                <a href={`${route('orders.export')}?${qs.stringify(search)}`} className='btn btn-outline'>Export</a>
                             </div>
                         </div>
                         <div className="overflow-x-auto pb-20">
