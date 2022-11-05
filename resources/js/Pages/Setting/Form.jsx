@@ -16,8 +16,9 @@ export default function Setting(props) {
         midtrans_merchant_id: setting.midtrans_merchant_id,
         site_name: setting.site_name,
         ticket_price: setting.ticket_price,
-        is_production: setting.is_production,
+        is_production: +setting.is_production === 1 ? true : false,
         is_open_order: setting.is_open_order,
+        term_url: setting.term_url,
     });
 
     const onHandleChange = (event) => {
@@ -74,6 +75,19 @@ export default function Setting(props) {
                                 <InputError message={errors.ticket_price}/>
                             </div>
                             <div className='mt-4'>
+                                <InputLabel forInput="term_url" value="URL syarat dan ketentuan" />
+                                <TextInput
+                                    type="text"
+                                    name="term_url"
+                                    value={data.term_url}
+                                    className="mt-1 block w-full"
+                                    autoComplete={"false"}
+                                    handleChange={onHandleChange}
+                                    isError={errors.term_url}
+                                />
+                                <InputError message={errors.term_url}/>
+                            </div>
+                            <div className='mt-4'>
                                 <InputLabel forInput="midtrans_server_key" value="Midtrans Server Key" />
                                 <TextInput
                                     type="text"
@@ -122,6 +136,17 @@ export default function Setting(props) {
                                     autoComplete={"false"}
                                     readOnly={true} 
                                 />
+                            </div>
+                            <div className="form-control mt-4">
+                                <label className="flex space-x-2 cursor-pointer">
+                                    <input 
+                                        name='is_production'
+                                        type="checkbox"
+                                        checked={data.is_production}
+                                        onChange={onHandleChange}
+                                    />
+                                    <span className="label-text">Midtrans Enable Production</span> 
+                                </label>
                             </div>
                             <div className="flex items-center justify-between mt-4">
                                 <PrimaryButton processing={processing}>

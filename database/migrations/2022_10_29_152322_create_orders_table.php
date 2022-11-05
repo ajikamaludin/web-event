@@ -16,7 +16,9 @@ return new class extends Migration {
             $table->id();
             $table->string('order_id')->unique();
             $table->datetime('order_date');
-            $table->datetime('order_payment');
+            $table->datetime('order_payment')->nullable();
+            $table->string('order_token')->nullable();
+            $table->float('order_amount', 14, 2);
             $table->string('order_payment_channel')->default('0'); //0 manual,
             $table->smallInteger('order_status')->default(0); //0 not paid, 1 pending, 2 success, 3 timeout
             $table->string('name');

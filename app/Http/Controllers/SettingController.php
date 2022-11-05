@@ -24,8 +24,9 @@ class SettingController extends Controller
             'midtrans_merchant_id' => 'required|string',
             'site_name' => 'required|string',
             'ticket_price' => 'required|numeric',
-            'is_production' => 'required|in:0,1',
+            'is_production' => 'required|bool',
             'is_open_order' => 'required|in:0,1',
+            'term_url' => 'required|url'
         ]);
 
         $setting = Setting::first();
@@ -36,8 +37,9 @@ class SettingController extends Controller
             'midtrans_merchant_id' => $request->midtrans_merchant_id,
             'site_name' => $request->site_name,
             'ticket_price' => $request->ticket_price,
-            'is_production' => $request->is_production,
+            'is_production' => $request->is_production ? 1 : 0,
             'is_open_order' => $request->is_open_order,
+            'term_url' => $request->term_url,
         ]);
 
         return redirect()->route('setting.show')

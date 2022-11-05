@@ -52,6 +52,6 @@
             All Rights Reserved.</span>
     </div>
     <div class="w-24">
-        <img src="images/fleycia.png" />
+        <img src="{{ asset('images/fleycia.png') }}" />
     </div>
 </div>

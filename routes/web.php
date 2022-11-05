@@ -21,6 +21,9 @@ use Illuminate\Http\Request;
 
 Route::get('/', [SiteController::class, 'home'])->name('home');
 Route::get('/order', [SiteController::class, 'order'])->name('order');
+Route::post('/pay', [SiteController::class, 'pay'])->name('order.pay');
+Route::get('/pay/{order:order_id}', [SiteController::class, 'show'])->name('order.show');
+Route::get('/pay/midtrans/finish',[SiteController::class, 'finish'])->name('midtrans.finish');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
@@ -34,9 +37,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/setting', [SettingController::class, 'show'])->name('setting.show');
     Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
-    Route::post('/midtrans/callback', function () {
-        //
-    })->name('midtrans.callback');
+    
 });
 
 require __DIR__.'/auth.php';

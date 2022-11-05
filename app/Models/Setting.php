@@ -19,6 +19,7 @@ class Setting extends Model
         'midtrans_snap_prod',
         'midtrans_snap_dev',
         'site_name',
+        'term_url',
         'ticket_price',
         'is_production',
         'is_open_order',
