@@ -69,13 +69,13 @@
             </div>
             <div class="form-control mt-4 w-full max-w-sm">
                 <div class="flex space-x-2">
-                    <input type="checkbox" checked="checked" id="agree" />
+                    <input type="checkbox" id="agree" />
                     <span class="label-text">Saya telah membaca dan setuju dengan <a href="{{ $setting->term_url }}" target="_blank" class="underline"> syarat dan ketentuan</a>*</span> 
                 </div>
             </div>
         </form>
         <div class="pt-4">
-            <button class="btn w-full" id="btn-buy">Beli</button>
+            <button class="btn w-full" id="btn-buy" disabled="true">Beli</button>
         </div>
     </div>
 </div>
@@ -121,6 +121,7 @@
         const nama = document.querySelector('#nama')
         const wa = document.querySelector('#wa')
         if (nama.value == '' || wa.value == '') {
+            alert('form tidak boleh kosong')
             return
         }
         data.textContent = nama.value + ' / ' + wa.value
