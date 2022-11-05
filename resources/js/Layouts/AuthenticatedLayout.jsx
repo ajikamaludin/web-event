@@ -132,8 +132,7 @@ export default function Authenticated(props) {
                         <div className="overflow-y-auto py-4 px-3 bg-base-100 rounded">
                             <ul className="space-y-2">
                                 <MenuItem routeName='dashboard' active='dashboard' name='Dashboard' />
-                                <MenuItem routeName='dashboard' active='p' name='Pemesanan' />
-                                <MenuItem routeName='dashboard' active='p' name='Penukaran' />
+                                <MenuItem routeName='orders.index' active='orders.*' name='Pemesanan' />
                                 <MenuItem routeName='dashboard' active='p' name='Halaman' />
                                 <MenuItem routeName='setting.show' active='setting.*' name='Setting' />
                                 {auth.user.is_admin === 1 && (

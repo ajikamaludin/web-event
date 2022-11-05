@@ -19,12 +19,11 @@ class SiteController extends Controller
     {
         $setting = Setting::first();
         $orderNumber = time() + rand(1000, 9999);
-        $date = now()->format('dmy');
 
         $amount = number_format($setting->ticket_price, 0, ',', '.');
 
         return view('order', [
-            'ordernum' => $date.$orderNumber,
+            'ordernum' => $orderNumber,
             'setting' => $setting,
             'amount' => $amount,
         ]);

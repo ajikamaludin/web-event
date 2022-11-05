@@ -35,6 +35,8 @@ class Order extends Model
         'midtrans_detail_callback',
     ];
 
+    protected $appends = ['order_status_text'];
+
     public function getOrderStatusTextAttribute()
     {
         return [

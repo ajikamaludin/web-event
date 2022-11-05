@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/inertia-react';
 
 export default function Dashboard(props) {
+    console.log(props)
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -15,25 +16,25 @@ export default function Dashboard(props) {
                 <div className="stats bg-base-100 border-base-300 border md:w-1/4">
                     <div className="stat">
                         <div className="stat-title">Total Kunjugan Bulan Ini</div> 
-                        <div className="stat-value">1,400</div> 
+                        <div className="stat-value">{props.visit_month}</div> 
                     </div>
                 </div>
                 <div className="stats bg-base-100 border-base-300 border md:w-1/4">
                     <div className="stat">
                         <div className="stat-title">Total Kunjugan Hari ini</div> 
-                        <div className="stat-value">2,400</div> 
+                        <div className="stat-value">{props.visit_today}</div> 
                     </div>
                 </div>
                 <div className="stats bg-base-100 border-base-300 border md:w-1/4">
                     <div className="stat">
                         <div className="stat-title">Total Order</div> 
-                        <div className="stat-value">1,400</div> 
+                        <div className="stat-value">{props.order_total}</div> 
                     </div>
                 </div>
                 <div className="stats bg-base-100 border-base-300 border md:w-1/4">
                     <div className="stat">
                         <div className="stat-title">Total Order Terbayar</div> 
-                        <div className="stat-value">4,400</div> 
+                        <div className="stat-value">{props.order_paid}</div> 
                     </div>
                 </div>
             </div>

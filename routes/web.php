@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Foundation\Application;
@@ -26,9 +28,7 @@ Route::get('/pay/{order:order_id}', [SiteController::class, 'show'])->name('orde
 Route::get('/pay/midtrans/finish',[SiteController::class, 'finish'])->name('midtrans.finish');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -38,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting', [SettingController::class, 'show'])->name('setting.show');
     Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
     
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 
 require __DIR__.'/auth.php';

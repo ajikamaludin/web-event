@@ -14,3 +14,9 @@
 .text-shadow {
     text-shadow: 0 0 3px #000000;
 }
+
+.table td, .table th {
+    padding: 0.80rem;
+    vertical-align: middle;
+    white-space: normal;
+}
