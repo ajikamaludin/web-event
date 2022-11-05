@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->string('email');
             $table->string('phone_number');
             $table->smallInteger('is_checked')->default(0); //0 false, 1 true
+            $table->text('midtrans_detail_callback')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

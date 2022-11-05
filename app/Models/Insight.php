@@ -9,7 +9,7 @@ class Insight extends Model
 {
     use HasFactory;
 
-    protected $fillables = [
+    protected $fillable = [
         'device',
         'platform',
         'browser',

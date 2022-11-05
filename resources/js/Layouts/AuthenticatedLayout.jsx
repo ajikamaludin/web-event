@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import { ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 import MenuItem from '@/Components/SidebarMenuItem';
 
 export default function Authenticated(props) {
-    const {auth, children} = props
+    const {auth, children, flash} = props
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+
+    useEffect(() => {
+        if (flash.message !== null) {
+            toast(flash.message.message, {type: flash.message.type})
+        }
+    }, [flash])
 
     return (
         <div className="min-h-screen bg-base-200">
@@ -17,7 +24,7 @@ export default function Authenticated(props) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/">
+                                <Link href={route('dashboard')}>
                                     <ApplicationLogo className="block h-9 w-auto font-bold text-2xl" />
                                 </Link>
                             </div>
@@ -57,6 +64,9 @@ export default function Authenticated(props) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
+                                        <a href={route('home')} className="block w-full px-4 py-2 text-left text-sm leading-5 hover:bg-base-200 focus:outline-none transition duration-150 ease-in-out" target="_blank">
+                                            View site
+                                        </a>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>
@@ -125,7 +135,7 @@ export default function Authenticated(props) {
                                 <MenuItem routeName='dashboard' active='p' name='Pemesanan' />
                                 <MenuItem routeName='dashboard' active='p' name='Penukaran' />
                                 <MenuItem routeName='dashboard' active='p' name='Halaman' />
-                                <MenuItem routeName='dashboard' active='p' name='Setting' />
+                                <MenuItem routeName='setting.show' active='setting.*' name='Setting' />
                                 {auth.user.is_admin === 1 && (
                                 <MenuItem routeName='users.index' active='users.*' name='Users' />
                                 )}

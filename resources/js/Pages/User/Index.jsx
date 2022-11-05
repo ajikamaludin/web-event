@@ -55,6 +55,7 @@ export default function Users(props) {
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
+            flash={props.flash}
         >
             <Head title="Users" />
             <div className="flex flex-col w-full sm:px-6 lg:px-8 space-y-2">

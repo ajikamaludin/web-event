@@ -18,7 +18,7 @@ class Order extends Model
 
     const CHANNEL_MANUAL = 0;
 
-    protected $fillables = [
+    protected $fillable = [
         'order_id',
         'order_date',
         'order_payment',

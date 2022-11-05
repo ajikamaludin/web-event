@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,7 +14,9 @@ return new class extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
+            $table->string('content_name'); // not editable
             $table->text('content');
+            $table->string('type'); //text, image (store), image (url),
             $table->smallInteger('sort');
             $table->timestamps();
         });

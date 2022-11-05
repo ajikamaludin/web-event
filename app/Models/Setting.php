@@ -12,7 +12,7 @@ class Setting extends Model
     const ENV_PROD = 1;
     const OPEN_ORDER = 1;
 
-    protected $fillables = [
+    protected $fillable = [
         'midtrans_server_key',
         'midtrans_client_key',
         'midtrans_merchant_id',

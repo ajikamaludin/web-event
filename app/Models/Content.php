@@ -9,7 +9,7 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $fillables = [
+    protected $fillable = [
         'content',
         'sort'
     ];
