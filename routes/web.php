@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,9 +18,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function (Request $request) {
-    return view('welcome');
-})->name('home');
+Route::get('/', [SiteController::class, 'home'])->name('home');
+Route::get('/order', [SiteController::class, 'order'])->name('order');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
