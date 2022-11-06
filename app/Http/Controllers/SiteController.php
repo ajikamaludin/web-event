@@ -129,6 +129,9 @@ class SiteController extends Controller
     {
         $order = Order::where('order_id', $request->order_id)->firstOrFail();
 
+        if ($order->order_status == Order::STATUS_PAID) {
+            return redirect()->route('order.show', $order);
+        }
         if ($request->transaction_status == 'settlement' || $request->transaction_status == 'capture') {
             $order->update([
                 'order_payment' => now(),
