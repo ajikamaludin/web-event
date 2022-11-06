@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderCreated;
+use App\Mail\OrderPayed;
 use App\Models\Order;
 use App\Models\Setting;
 use App\Services\MidtransService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
@@ -36,7 +39,7 @@ class SiteController extends Controller
             'phone_number' => 'required|numeric',
             'name' => 'required|string',
             'address' => 'required|string',
-            'email' => 'required|required',
+            'email' => 'required|email',
         ]);
         
         $setting = Setting::first();
@@ -58,6 +61,7 @@ class SiteController extends Controller
         $order->order_token = $token;
         $order->save();
         DB::commit();
+        Mail::to($request->email)->send(new OrderCreated($order));
 
         return view('pay', [
             'order' => $order,
@@ -92,6 +96,7 @@ class SiteController extends Controller
                 'order_status' => Order::STATUS_PAID,
                 'midtrans_detail_callback' => json_encode($request->all())
             ]);
+            Mail::to($order->email)->send(new OrderPayed($order));
         } elseif ($request->transaction_status == 'pending') {
             $order->update([
                 'order_payment' => $request->transaction_time,
@@ -125,6 +130,7 @@ class SiteController extends Controller
                 'order_status' => Order::STATUS_PAID,
                 'midtrans_detail_callback' => json_encode($request->all())
             ]);
+            Mail::to($order->email)->send(new OrderPayed($order));
         } elseif ($request->transaction_status == 'pending') {
             $order->update([
                 'order_payment' => now(),
