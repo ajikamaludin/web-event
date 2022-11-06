@@ -18,7 +18,7 @@ class Order extends Model
 
     const HAS_BEEN_CHECK = 1;
 
-    const CHANNEL_MANUAL = 0;
+    const CHANNEL_MANUAL = 'Admin | Manual';
 
     protected $fillable = [
         'order_id',

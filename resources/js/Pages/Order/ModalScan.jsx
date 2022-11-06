@@ -4,7 +4,7 @@ import TextInput from '@/Components/TextInput'
 import axios from 'axios'
 
 export default function ModalScan(props) {
-    const { isOpen, toggle, onConfirm = () => {} } = props
+    const { isOpen, toggle } = props
     const [q, setQ] = useState('')
     const [response, setResponse] = useState({status: '', message: ''})
     const [loading, setLoading] = useState(false)
@@ -24,7 +24,10 @@ export default function ModalScan(props) {
                 message: err.response.data.message
             })
         })
-        .finally(() => setLoading(false))
+        .finally(() => {
+            setLoading(false)
+            setQ('')
+        })
     }
 
     useEffect(() => {

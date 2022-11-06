@@ -12,6 +12,7 @@ import { formatDate } from '@/utils'
 import { useModalState } from '@/Hooks'
 import ModalConfirm from '@/Components/ModalConfirm'
 import ModalScan from './ModalScan'
+import ModalForm from './ModalForm'
 
 export default function Index(props) {
     const { data: orders, links } = props.orders
@@ -20,7 +21,7 @@ export default function Index(props) {
     const preValue = usePrevious(search)
 
     const confirmModal = useModalState(false)
-    const handleDelete = (order) => {
+    const handleDelete = (order = null) => {
         confirmModal.setData(order)
         confirmModal.toggle()
     }
@@ -35,6 +36,13 @@ export default function Index(props) {
     }
 
     const scanModal = useModalState(false)
+
+    const [order, setOrder] = useState(null)
+    const formModal = useModalState(false)
+    const handleEditClick = (order) => {
+        setOrder(order)
+        formModal.toggle()
+    }
 
     const handleFilter = (filter) => {
         setSearch(filter)
@@ -135,7 +143,7 @@ export default function Index(props) {
                                                 <div className="dropdown dropdown-left">
                                                     <label tabIndex={0} className="btn btn-sm m-1 px-1"><IconMenu/></label>
                                                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                                        <li onClick={() => {}}>
+                                                        <li onClick={() => handleEditClick(order)}>
                                                             <div>Edit</div>
                                                         </li>
                                                         <li onClick={() => handleDelete(order)} className="bg-error ">
@@ -163,6 +171,11 @@ export default function Index(props) {
             <ModalScan
                 isOpen={scanModal.isOpen}
                 toggle={scanModal.toggle}
+            />
+            <ModalForm
+                isOpen={formModal.isOpen}
+                toggle={formModal.toggle}
+                order={order}
             />
         </AuthenticatedLayout>
     )

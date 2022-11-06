@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/export', [OrderController::class, 'export'])->name('orders.export');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
 });
 
 require __DIR__.'/auth.php';

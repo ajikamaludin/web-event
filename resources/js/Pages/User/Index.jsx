@@ -19,14 +19,14 @@ export default function Users(props) {
     const [user, setUser] = useState(null)
     const formModal = useModalState(false)
     const toggle = (user = null) => {
-    setUser(user)
-    formModal.toggle()
+        setUser(user)
+        formModal.toggle()
     }
 
     const confirmModal = useModalState(false)
     const handleDelete = (user) => {
-    confirmModal.setData(user)
-    confirmModal.toggle()
+        confirmModal.setData(user)
+        confirmModal.toggle()
     }
 
     const onDelete = () => {

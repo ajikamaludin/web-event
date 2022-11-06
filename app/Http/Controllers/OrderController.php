@@ -32,9 +32,34 @@ class OrderController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Order $order)
     {
-        // TODO
+        $request->validate([
+            'order_status' => 'required|in:0,1,2',
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'email' => 'required|email',
+            'phone_number' => 'required|numeric',
+            'is_checked' => 'required|bool',
+        ]);
+
+        $order->fill([
+            'name' => $request->name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'is_checked' => $request->is_checked ? 1 : 0,
+        ]);
+
+        if ($request->order_status != $order->order_status && $request->order_status == Order::STATUS_PAID) {
+            $order->order_payment_channel = Order::CHANNEL_MANUAL;
+        }
+
+        $order->order_status = $request->order_status;
+        $order->save();
+        
+        return redirect()->route('orders.index')
+                    ->with('message', ['type' => 'success', 'message' => 'The data has beed saved']);
     }
 
     public function destroy(Order $order)
