@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiteController;
@@ -8,6 +9,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\InsightTracker;
 use Illuminate\Http\Request;
 
 /*
@@ -21,7 +23,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', [SiteController::class, 'home'])->name('home');
+Route::get('/', [SiteController::class, 'home'])->name('home')->middleware(InsightTracker::class);
 Route::get('/order', [SiteController::class, 'order'])->name('order');
 Route::post('/pay', [SiteController::class, 'pay'])->name('order.pay');
 Route::get('/pay/{order:order_id}', [SiteController::class, 'show'])->name('order.show');
@@ -42,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders/export', [OrderController::class, 'export'])->name('orders.export');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+
+    Route::get('/contents', [LandingPageController::class, 'index'])->name('contents.index');
+    Route::post('/contents/{content}', [LandingPageController::class, 'update'])->name('contents.update');
 });
 
 require __DIR__.'/auth.php';

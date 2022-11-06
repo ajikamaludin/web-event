@@ -52,6 +52,6 @@
             All Rights Reserved.</span>
     </div>
     <div class="w-24">
-        <img src="{{ asset('images/fleycia.png') }}" />
+        <img src="{{ $template->where('content_name', 'LOGO_1')->first()->image_url }}" />
     </div>
 </div>

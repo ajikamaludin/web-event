@@ -3,11 +3,9 @@
 @tailwind utilities;
 
 
-
-@media (min-width: 1280px
-) {
-    .xl\:h-200 {
-        height: 40rem;
+@media (min-width: 1280px) {
+    .lg\:h-100 {
+        height: 40rem !important;
     }
 }
 

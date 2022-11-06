@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Content;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::share('template', Content::orderBy('sort', 'asc')->get());
     }
 }

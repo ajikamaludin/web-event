@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Insight;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,16 @@ class InsightTracker
      */
     public function handle(Request $request, Closure $next)
     {
-        // TODO: insert into insight for any request here
-        // $request->visitor()->device();
-        // https://github.com/shetabit/visitor
+        Insight::create([
+            'device' => $request->visitor()->device(),
+            'platform' => $request->visitor()->platform(),
+            'browser' => $request->visitor()->browser(),
+            'languages' => json_encode($request->visitor()->languages()),
+            'ip' => $request->visitor()->ip(),
+            'request' => json_encode($request->visitor()->ip()),
+            'useragent' => json_encode($request->visitor()->useragent()),
+        ]);
+
         return $next($request);
     }
 }
