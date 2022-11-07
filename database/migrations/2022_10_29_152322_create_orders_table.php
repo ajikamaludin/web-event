@@ -27,6 +27,11 @@ return new class extends Migration {
             $table->string('phone_number');
             $table->smallInteger('is_checked')->default(0); //0 false, 1 true
             $table->text('midtrans_detail_callback')->nullable();
+
+            $table->integer('ticket_id');
+            $table->float('ticket_price', 14, 2);
+            $table->smallInteger('ticket_count');
+
             $table->timestamps();
             $table->softDeletes();
         });

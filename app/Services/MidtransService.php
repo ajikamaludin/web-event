@@ -30,9 +30,9 @@ class MidtransService
             'item_details' => [
                 [
                     'id' => $this->order->order_id,
-                    'price' => $this->order->order_amount,
-                    'quantity' => 1,
-                    'name' => 'Tiket-'.$this->order->order_id,
+                    'price' => $this->order->ticket_price,
+                    'quantity' => $this->order->ticket_count,
+                    'name' => 'Tiket-'.$this->order->ticket->name,
                 ],
             ],
             'customer_details' => [

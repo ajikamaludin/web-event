@@ -56,9 +56,24 @@
             </div>
             <div class="form-control w-full max-w-sm">
                 <label class="label">
-                    <span class="label-text">Harga Tiket (IDR)</span>
+                    <span class="label-text">Tiket</span>
                 </label>
-                <input type="text" placeholder="Email" readonly="true" value="{{ $amount }}" class="input input-bordered w-full max-w-sm" />
+                <select class="select select-bordered w-full" name="ticket_id" id="ticket">
+                    @foreach($tickets as $index => $ticket)
+                    <option {{ $index == "0" ? "selected" : "" }} value="{{ $ticket->id }}" data-price="{{ $ticket->price }}">{{ $ticket->name }} ({{ number_format($ticket->price, 0, ',', '.') }})</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-control w-full max-w-sm">
+                <label class="label">
+                    <span class="label-text">Jumlah</span>
+                </label>
+                <input name="count" value="1" min="1" type="number" placeholder="Jumlah" value="{{ old('count') }}" class="input input-bordered w-full max-w-sm @error('count') input-error @enderror" id="count" required/>
+                @error('count')
+                <label class="label">
+                    <span class="text-xs text-red-600">{{ $message }}</span>
+                </label>
+                @enderror
             </div>
             <div class="form-control mt-4 w-full max-w-sm">
                 <div class="flex space-x-2"> 
@@ -87,7 +102,7 @@
         <h3 class="font-bold text-xl">Konfirmasi Pesanan!</h3>
         <p class="pt-4 pb-1">No.Order: {{ $ordernum }}</p>
         <p class="py-1" id="data"></p>
-        <p class="py-1 font-bold">Total: {{ $amount }} (IDR)</p>
+        <p class="py-1 font-bold" id="total">Total: ? (IDR)</p>
         <p class="py-1">Dengan ini data yang saya inputkan sudah benar dan valid</p>
         <div class="modal-action">
             <button class="btn" id="btn-pay">Bayar</button>
@@ -120,10 +135,16 @@
         console.log('buy')
         const nama = document.querySelector('#nama')
         const wa = document.querySelector('#wa')
+        const ticket = document.querySelector('#ticket')
+        const count = document.querySelector('#count')
+        const total = document.querySelector('#total')
         if (nama.value == '' || wa.value == '') {
             alert('form tidak boleh kosong')
             return
         }
+        price = ticket.options[ticket.selectedIndex].getAttribute("data-price")
+        amount = count.value * price
+        total.textContent = "Total: " + formatIDR(amount) + " (IDR)"
         data.textContent = nama.value + ' / ' + wa.value
         modalCheck.click()
     })
@@ -140,5 +161,10 @@
         formOrder.submit()
 
     })
+
+    function formatIDR(amount) {
+        const idFormatter = new Intl.NumberFormat("id-ID");
+        return idFormatter.format(amount);
+    }
 </script>
 @endsection

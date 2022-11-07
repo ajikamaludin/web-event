@@ -33,6 +33,9 @@ class Order extends Model
         'phone_number',
         'is_checked', // person ticket has been change to phisical
         'midtrans_detail_callback',
+        'ticket_id',
+        'ticket_price',
+        'ticket_count',
     ];
 
     protected $appends = ['order_status_text'];
@@ -45,5 +48,10 @@ class Order extends Model
             self::STATUS_PAID => 'Terbayar',
             self::STATUS_FAIL => 'Pembayaran Gagal',
         ][$this->order_status] ." | ". ($this->is_checked == 1 ? 'Sudah Scan' : 'Belum Scan');
+    }
+
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class, 'ticket_id');
     }
 }

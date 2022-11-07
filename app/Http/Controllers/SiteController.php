@@ -6,6 +6,7 @@ use App\Mail\OrderCreated;
 use App\Mail\OrderPayed;
 use App\Models\Order;
 use App\Models\Setting;
+use App\Models\Ticket;
 use App\Services\MidtransService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,15 +21,14 @@ class SiteController extends Controller
 
     public function order()
     {
+        $tickets = Ticket::all();
         $setting = Setting::first();
         $orderNumber = time() + rand(1000, 9999);
-
-        $amount = number_format($setting->ticket_price, 0, ',', '.');
 
         return view('order', [
             'ordernum' => $orderNumber,
             'setting' => $setting,
-            'amount' => $amount,
+            'tickets' => $tickets,
         ]);
     }
 
@@ -40,20 +40,27 @@ class SiteController extends Controller
             'name' => 'required|string',
             'address' => 'required|string',
             'email' => 'required|email',
+            'ticket_id' => 'required|exists:tickets,id',
+            'count' => 'required|numeric'
         ]);
         
         $setting = Setting::first();
+        $ticket = Ticket::find($request->ticket_id);
+        $amount = $ticket->price * $request->count;
 
         DB::beginTransaction();
         $order = Order::make([
             'order_id' => $request->ordernum,
             'order_date' => now(),
-            'order_amount' => $setting->ticket_price,
+            'order_amount' => $amount,
             'order_status' => Order::STATUS_NOT_PAID,
             'name' => $request->name,
             'address'=> $request->address,
             'email'=> $request->email,
             'phone_number'=> $request->phone_number,
+            'ticket_id' => $ticket->id,
+            'ticket_price' => $ticket->price,
+            'ticket_count' => $request->count,
         ]);
 
         $snap_url = $setting->is_production == 1 ? $setting->midtrans_snap_prod : $setting->midtrans_snap_dev;

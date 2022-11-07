@@ -61,7 +61,7 @@ export default function Setting(props) {
                                 />
                                 <InputError message={errors.site_name}/>
                             </div>
-                            <div className='mt-4'>
+                            {/* <div className='mt-4'>
                                 <InputLabel forInput="ticket_price" value="Harga Tiket" />
                                 <TextInput
                                     type="text"
@@ -73,7 +73,7 @@ export default function Setting(props) {
                                     isError={errors.ticket_price}
                                 />
                                 <InputError message={errors.ticket_price}/>
-                            </div>
+                            </div> */}
                             <div className='mt-4'>
                                 <InputLabel forInput="term_url" value="URL syarat dan ketentuan" />
                                 <TextInput

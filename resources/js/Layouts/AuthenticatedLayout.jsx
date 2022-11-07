@@ -133,6 +133,7 @@ export default function Authenticated(props) {
                             <ul className="space-y-2">
                                 <MenuItem routeName='dashboard' active='dashboard' name='Dashboard' />
                                 <MenuItem routeName='orders.index' active='orders.*' name='Pemesanan' />
+                                <MenuItem routeName='tickets.index' active='tickets.*' name='Tiket' />
                                 <MenuItem routeName='contents.index' active='contents.*' name='Halaman' />
                                 <MenuItem routeName='setting.show' active='setting.*' name='Setting' />
                                 {auth.user.is_admin === 1 && (
