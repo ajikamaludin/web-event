@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { useForm } from '@inertiajs/inertia-react'
+import { formatIDR } from '@/utils'
 
 export default function ModalForm(props) {
     const { isOpen, toggle = () => {}, order = null } = props
@@ -17,6 +18,10 @@ export default function ModalForm(props) {
         phone_number: '',
         is_checked: '',
         midtrans_detail_callback: '',
+        ticket_id: '',
+        ticket_price: '',
+        ticket_count: '',
+        ticket: null,
     })
 
     const handleOnChange = (event) => {
@@ -53,6 +58,10 @@ export default function ModalForm(props) {
             phone_number: order?.phone_number,
             is_checked: order?.is_checked,
             midtrans_detail_callback: order?.midtrans_detail_callback,
+            ticket_id: order?.ticket_id,
+            ticket_price: order?.ticket_price,
+            ticket_count: order?.ticket_count,
+            ticket: order?.ticket,
         })
         console.log(order)
     }, [order])
@@ -215,6 +224,19 @@ export default function ModalForm(props) {
                     <label className="label">
                         <span className="label-text-alt">{errors.order_payment_channel}</span>
                     </label>
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Keterangan</span>
+                    </label>
+                    <textarea 
+                        readOnly={true} 
+                        class="textarea textarea-bordered"
+                        value={`Tiket : ${data.ticket?.name} (${formatIDR(data.ticket_price)})
+Jumlah : ${data.ticket_count}
+Total: ${formatIDR(data.order_amount)}`}
+                        rows={3}
+                    />
                 </div>
                 <div className="modal-action">
                     <div

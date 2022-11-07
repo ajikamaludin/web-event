@@ -127,6 +127,7 @@ export default function Index(props) {
                                         <th>Tanggal</th>
                                         <th>Nama</th>
                                         <th>Status</th>
+                                        <th>Jumlah</th>
                                         <th>No.HP/WA</th>
                                         <th></th>
                                     </tr>
@@ -138,6 +139,7 @@ export default function Index(props) {
                                             <td>{formatDate(order.order_date)}</td>
                                             <td>{order.name}</td>
                                             <td>{order.order_status_text}</td>
+                                            <td>{order.ticket_count}</td>
                                             <td>{order.phone_number}</td>
                                             <td className='text-right'>
                                                 <div className="dropdown dropdown-left">

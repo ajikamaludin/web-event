@@ -28,7 +28,7 @@ class OrderController extends Controller
         }
 
         return inertia('Order/Index', [
-            'orders' => $query->paginate(10)
+            'orders' => $query->with(['ticket'])->paginate(10)
         ]);
     }
 
