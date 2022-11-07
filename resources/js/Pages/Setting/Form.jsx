@@ -48,7 +48,7 @@ export default function Setting(props) {
                         <p className='font-bold text-2xl mb-4'>Setting</p>
                         <div className="overflow-x-auto">
                         <form onSubmit={submit}>
-                            <div>
+                            {/* <div>
                                 <InputLabel forInput="site_name" value="Web Title" />
                                 <TextInput
                                     type="text"
@@ -60,7 +60,7 @@ export default function Setting(props) {
                                     isError={errors.site_name}
                                 />
                                 <InputError message={errors.site_name}/>
-                            </div>
+                            </div> */}
                             {/* <div className='mt-4'>
                                 <InputLabel forInput="ticket_price" value="Harga Tiket" />
                                 <TextInput

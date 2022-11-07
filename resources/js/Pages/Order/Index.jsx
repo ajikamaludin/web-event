@@ -8,7 +8,7 @@ import qs from 'qs'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import Pagination from '@/Components/Pagination'
 import { IconMenu } from '@/Icons'
-import { formatDate } from '@/utils'
+import { formatDate, formatIDR } from '@/utils'
 import { useModalState } from '@/Hooks'
 import ModalConfirm from '@/Components/ModalConfirm'
 import ModalScan from './ModalScan'
@@ -77,7 +77,7 @@ export default function Index(props) {
                 <div className="card bg-base-100 w-full">
                     <div className="card-body">
                         <div className="flex flex-col md:flex-row w-full mb-4 justify-between space-y-1 md:space-y-0">
-                            <div className='flex flex-row space-x-1'>
+                            <div className='flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-1'>
                                 <div className="form-control w-full">
                                     <input
                                         type="text"
@@ -128,6 +128,7 @@ export default function Index(props) {
                                         <th>Nama</th>
                                         <th>Status</th>
                                         <th>Jumlah</th>
+                                        <th>Total</th>
                                         <th>No.HP/WA</th>
                                         <th></th>
                                     </tr>
@@ -140,6 +141,7 @@ export default function Index(props) {
                                             <td>{order.name}</td>
                                             <td>{order.order_status_text}</td>
                                             <td>{order.ticket_count}</td>
+                                            <td>{formatIDR(order.order_amount)}</td>
                                             <td>{order.phone_number}</td>
                                             <td className='text-right'>
                                                 <div className="dropdown dropdown-left">

@@ -106,6 +106,18 @@ export default function Authenticated(props) {
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('orders.index')} active={route().current('orders.*')}>
+                            Pemesanan
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('tickets.index')} active={route().current('tickets.*')}>
+                            Tiket
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('contents.index')} active={route().current('contents.*')}>
+                            Halaman
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('setting.show')} active={route().current('setting.*')}>
+                            Setting
+                        </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('users.index')} active={route().current('users.*')}>
                             Users
                         </ResponsiveNavLink>
