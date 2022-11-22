@@ -43,11 +43,11 @@
     </div>
 </div>
 <div class="text-center pt-20" id="section2">
-    <div class="text-4xl font-bold">
+    <div class="text-xl md:text-4xl font-bold">
         <div>{{ $template->where('content_name', 'TITLE_1')->first()->content }}</div>
         <div>{{ $template->where('content_name', 'TITLE_1_1')->first()->content }}</div>
     </div>
-    <div class="pt-15 text-2xl">
+    <div class="pt-15 text-lg md:text-2xl">
         {{ $template->where('content_name', 'SUB_TITLE_1')->first()->content }}
     </div>
     <div class="flex w-full justify-center py-10 space-x-4">
@@ -60,7 +60,7 @@
             src="{{ $template->where('content_name', 'IMAGE_2')->first()->image_url }}"
         />
     </div>
-    <div class="pt-15 text-2xl">
+    <div class="pt-15 text-xl md:text-2xl">
         {{ $template->where('content_name', 'SUB_TITLE_2')->first()->content }}
     </div>
 </div>
