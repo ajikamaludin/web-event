@@ -50,13 +50,13 @@
     <div class="pt-15 text-lg md:text-2xl">
         {{ $template->where('content_name', 'SUB_TITLE_1')->first()->content }}
     </div>
-    <div class="flex w-full justify-center py-10 space-x-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full py-10">
         <img
-            class="object-fill w-1/2 h-40 md:h-96"
+            class="object-fill w-full h-50 md:h-96"
             src="{{ $template->where('content_name', 'IMAGE_1')->first()->image_url }}"
         />
         <img
-            class="object-fill w-1/2 h-40 md:h-96"
+            class="object-fill w-full h-50 md:h-96"
             src="{{ $template->where('content_name', 'IMAGE_2')->first()->image_url }}"
         />
     </div>
@@ -65,7 +65,7 @@
     </div>
 </div>
 <div class="text-center pt-20" id="section3">
-    <div class="text-4xl font-bold">{{ $template->where('content_name', 'TITLE_2')->first()->content }}</div>
+    <div class="text-xl md:text-4xl font-bold">{{ $template->where('content_name', 'TITLE_2')->first()->content }}</div>
     <div class="w-full flex justify-center pt-10">
         <iframe
             width="800"
@@ -79,7 +79,7 @@
     </div>
 </div>
 <div class="text-center pt-20">
-    <div class="text-4xl font-bold">{{$template->where('content_name', 'TITLE_3')->first()->content}}</div>
+    <div class="text-xl md:text-4xl font-bold">{{$template->where('content_name', 'TITLE_3')->first()->content}}</div>
     <div class="text-left md:pl-24 lg:pl-64">
         {!! $template->where('content_name', 'SUB_TITLE_3')->first()->content !!}
     </div>
