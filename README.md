@@ -35,5 +35,5 @@ $ npm run build
 
 ## Screenshot
 
-![](screenshot1.png?raw=true)
-![](screenshot2.png?raw=true)
+![](1.png?raw=true)
+![](2.png?raw=true)
