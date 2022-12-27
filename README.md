@@ -1,4 +1,4 @@
-# Web Events - Laravel
+# Web Events - Laravel inertiajs
 
 This is a project about website with manageble landing page and register form to purchase ticket integrated with midtrans [payment gateway]
 ## Support me
